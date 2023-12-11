@@ -1,0 +1,36 @@
+﻿@model MvcStok.Models.Entity.TblMusteriler
+@{
+    ViewBag.Title = "YeniMusteri";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form method="post" class="form-group">
+
+    <div>
+        <label>Müşteri Adı</label>
+        @Html.TextAreaFor(m => m.MusteriAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriAd, "", new { @style = "color:green" })
+    </div>
+    <br />
+    <div>
+        <label>Müşteri Soyadı</label>
+        @Html.TextAreaFor(m => m.MusteriSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriSoyad, "", new { @style = "color:green" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Müşteri Ekle</button>
+    </div>
+    @if (TempData["BasariMesaji"] != null)
+    {
+        <script>
+        $(document).ready(function () {
+            var basariMesaji = '@Html.Raw(TempData["BasariMesaji"].ToString().Replace("'", "\\'"))';
+            alert(basariMesaji);
+        });
+        </script>
+    }
+
+
+
+</form>

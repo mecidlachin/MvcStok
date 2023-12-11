@@ -1,0 +1,60 @@
+﻿@model MvcStok.Models.Entity.TblSatislar
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Satış Yap
+</button>
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Satış Yapma Ekranı</h2>
+            </div>
+            <form method="post" action="/Satis/YeniSatis" onsubmit="return validateForm()">
+                <div class="modal-body">
+                    <label>
+                        Ürün Adı
+                    </label>
+                    @Html.TextAreaFor(m => m.Urun, new { @class = "form-control", id = "Urun" })
+                    <br />
+                    <label>
+                        Müşteri Adı Soyadı
+                    </label>
+                    @Html.TextAreaFor(m => m.Musteri, new { @class = "form-control", id = "Musteri" })
+                    <br />
+                    <label>
+                        Adet
+                    </label>
+                    @Html.TextAreaFor(m => m.Adet, new { @class = "form-control", id = "Adet" })
+                    <br />
+                    <label>
+                        Fiyat
+                    </label>
+                    @Html.TextAreaFor(m => m.Fiyat, new { @class = "form-control", id = "Fiyat" })
+                    <br />
+                    <button type="submit" class="btn btn-info">Satış İşlemini Yap</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateForm() {
+        var urun = document.getElementById("Urun").value;
+        var musteri = document.getElementById("Musteri").value;
+        var adet = document.getElementById("Adet").value;
+        var fiyat = document.getElementById("Fiyat").value;
+
+        if (urun.trim() === "" || musteri.trim() === "" || adet.trim() === "" || fiyat.trim() === "") {
+            alert("Lütfen tüm alanları doldurun.");
+            return false;
+        }
+
+        return true;
+    }
+</script>
